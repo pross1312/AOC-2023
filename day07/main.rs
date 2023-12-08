@@ -40,8 +40,8 @@ fn check_rank2(mut cards: Vec<char>) -> i32 {
     max_same + jokers + (3 - dif)
 }
 
-fn solve<F>(file_path: &str, card_order: &str, mut value_of: F)
-where F: FnMut(Vec<char>) -> i32 {
+fn solve<F>(file_path: &str, card_order: &str, value_of: F)
+where F: Fn(Vec<char>) -> i32 {
     let file = File::open(file_path).unwrap();
     let mut lines: Vec<Vec<String>>  = BufReader::new(file).lines()
         .map(|x| x.unwrap().split(" ").map(|y| y.to_owned()).collect::<Vec<_>>()).collect();
